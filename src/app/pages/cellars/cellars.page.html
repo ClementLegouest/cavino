@@ -1,6 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>cellars</ion-title>
+    <nav>
+      <ion-list>
+        <ion-item>
+          <img src="/assets/icon/favicon.png" class="logo">
+        </ion-item>
+        <ion-item>CAVINO</ion-item>
+        <ion-item *ngFor="let menu of menuList">
+          <ion-label [routerLink]="menu.url">{{ menu.title }}</ion-label>
+        </ion-item>
+      </ion-list>
+    </nav>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-button class="logout_button" slot="end" color="danger" expand="full" color="primary" (click)="disconnect()">Déconnexion</ion-button>
   </ion-toolbar>
 </ion-header>
 
