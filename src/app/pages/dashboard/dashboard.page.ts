@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import {Token} from '../../models/token';
 import {EnvService} from '../../services/env.service';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 @Component({
     selector: 'app-dashboard',
@@ -18,7 +19,8 @@ export class DashboardPage implements OnInit {
     constructor(
         private menu: MenuController,
         private authService: AuthService,
-        private env: EnvService) {
+        private env: EnvService,
+        private storage: NativeStorage) {
         this.menu.enable(true);
     }
 
@@ -38,6 +40,8 @@ export class DashboardPage implements OnInit {
             .subscribe((user) => {
                 console.log(user);
                 this.user = user;
+                this.storage.setItem('user', user);
+                console.log('user from storage : ', this.storage.getItem('user'));
                 }
             );
     }
