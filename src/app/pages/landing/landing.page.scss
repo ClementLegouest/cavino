@@ -1,0 +1,22 @@
+nav ion-list {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+}
+
+nav ion-img, nav ion-label {
+  display: inline-block;
+}
+
+.app_icon {
+  height: 50px;
+  width: 50px;
+}
+
+.landing_picture {
+  max-width: 500px;
+}
+
+.login_button {
+  margin-right: 10px;
+}

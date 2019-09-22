@@ -3,6 +3,8 @@ import { ModalController, MenuController, NavController } from '@ionic/angular';
 import { RegisterPage } from '../auth/register/register.page';
 import { LoginPage } from '../auth/login/login.page';
 import { AuthService } from 'src/app/services/auth.service';
+import { EnvService } from '../../services/env.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -15,17 +17,16 @@ export class LandingPage implements OnInit {
       private modalController: ModalController,
       private menu: MenuController,
       private authService: AuthService,
-      private navCtrl: NavController,
+      private router: Router,
+      private env: EnvService
   ) {
     this.menu.enable(false);
   }
 
   ionViewWillEnter() {
-    this.authService.getToken().then(() => {
-      if (this.authService.isLoggedIn) {
-        this.navCtrl.navigateRoot('/dashboard');
-      }
-    });
+    if (!(this.env.token.token === '')) {
+      this.router.navigateByUrl('dashboard');
+    }
   }
 
   ngOnInit() {

@@ -1,31 +1,34 @@
 <ion-header>
-  <ion-toolbar>
-    <!-- <ion-title>landing</ion-title> -->
-  </ion-toolbar>
+    <ion-toolbar>
+        <nav>
+            <ion-img slot="start" class="app_icon" src="/assets/icon/favicon.png" alt="ico"></ion-img>
+            <ion-label class="app_title">CAVINO</ion-label>
+        </nav>
+        <ion-button class="login_button" slot="end" color="primary" expand="full" color="primary" (click)="login()">Login</ion-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-card class="welcome-card">
-    <ion-img src="/assets/shapes.svg"></ion-img>
-    <ion-card-header>
-      <ion-card-subtitle>Get Started</ion-card-subtitle>
-      <ion-card-title>Welcome to Ionic 4 Auth</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <p>Starting point for Ionic 4 Application with Authentication.</p>
-    </ion-card-content>
-  </ion-card>
+    <ion-card style="align-content: center" class="welcome-card">
+        <ion-img class="landing_picture" src="/assets/cavino.png"></ion-img>
+        <ion-card-header>
+            <ion-card-title>Bienvenue sur Cavino, ici nous vous proposons une solution pour gérer votre cave à vin</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Veuillez vous authentifier pour utiliser le service, merci</p>
+        </ion-card-content>
+    </ion-card>
 </ion-content>
 
-<ion-footer>
-  <ion-toolbar>
-    <ion-row>
-      <ion-col>
-        <ion-button color="primary" expand="full" color="primary" (click)="login()">Login</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button color="primary" expand="full" color="danger" (click)="register()">Register</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-toolbar>
-</ion-footer>
+<!--<ion-footer>
+    <ion-toolbar>
+        <ion-row>
+            <ion-col>
+                <ion-button color="primary" expand="full" color="primary" (click)="login()">Login</ion-button>
+            </ion-col>
+            <ion-col>
+                <ion-button color="primary" expand="full" color="danger" (click)="register()">Register</ion-button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>-->
