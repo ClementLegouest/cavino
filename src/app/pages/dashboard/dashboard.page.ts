@@ -36,16 +36,30 @@ export class DashboardPage implements OnInit {
     }
 
     getUserInfo() {
-        this.token = this.env.token;
-        console.log(this.token);
+        if ( this.env.isMobile() ) {
+            this.storage.getItem('token')
+                .then((token) => {
+                    this.token = token;
+                    console.log('token out of NativeStorage : ', this.token);
+                });
+        } else {
+            this.token = JSON.parse(localStorage.getItem('token'));
+            console.log('token out of localStorage : ', this.token);
+        }
+        console.log('token from EnService : ', this.token);
         this.authService.user(this.token.uuid, this.token.token)
             .subscribe((user) => {
-                console.log(user);
                 this.user = user;
-                this.storage.setItem('user', user);
-                console.log('user from storage : ', this.storage.getItem('user'));
+                if ( this.env.isMobile() ) {
+                    this.storage.setItem('user', user);
+                    console.log('user from NativeStorage : ', this.storage.getItem('user'));
+                } else {
+                    localStorage.setItem('user', JSON.stringify(user));
+                    console.log('user out of localStorage : ', JSON.parse(localStorage.getItem('user')));
                 }
-            );
+                this.env.user = user;
+                console.log('user from EnvService : ', this.env.user);
+            });
     }
 
     disconnect() {

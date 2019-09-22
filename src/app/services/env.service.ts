@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {User} from '../models/user';
 import {Token} from '../models/token';
+import {Platform} from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -32,9 +33,17 @@ export class EnvService {
   private _USER_URL = this._API_URL + this.USER_URI;
 
   private _token: Token;
-  private user: User;
+  private _user: User;
 
-  constructor() { }
+  constructor(
+      private platrform: Platform
+  ) { }
+
+  isMobile(): boolean {
+    if ('mobile' in this.platrform.platforms()) {
+      return true;
+    }
+  }
 
   get API_URL(): string {
     return this._API_URL;
@@ -54,5 +63,14 @@ export class EnvService {
 
   set token(value: Token) {
     this._token = value;
+  }
+
+
+  get user(): User {
+    return this._user;
+  }
+
+  set user(value: User) {
+    this._user = value;
   }
 }

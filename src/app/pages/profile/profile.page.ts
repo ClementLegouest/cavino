@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import {User} from '../../models/user';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import {EnvService} from '../../services/env.service';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePage implements OnInit {
 
-  constructor() { }
+  private user: User;
+  private menuList;
+  private isMobile: boolean;
 
-  ngOnInit() {
+  constructor(
+      private authService: AuthService,
+      private env: EnvService,
+      private storage: NativeStorage
+  ) {
+    this.menuList = env.appPagesNew;
+    this.user = JSON.parse(localStorage.getItem('user'));
+    this.isMobile = env.isMobile();
   }
 
+  async ngOnInit() {
+    if (this.env.isMobile()) {
+      console.log('You are on mobile');
+      this.user = await this.storage.getItem('user');
+    } else {
+      console.log('You are not on mobile');
+      this.user = JSON.parse(localStorage.getItem('user'));
+    }
+  }
+
+  disconnect() {
+    this.authService.logout();
+  }
 }

@@ -21,7 +21,8 @@ export class LoginPage implements OnInit {
         private router: Router,
         private alertService: AlertService,
         private envService: EnvService,
-        private storage: NativeStorage
+        private storage: NativeStorage,
+        private env: EnvService
     ) { }
 
     ngOnInit() {
@@ -47,10 +48,13 @@ export class LoginPage implements OnInit {
         } else {
             this.authService.login(form.value.email, form.value.password)
                 .subscribe((token) => {
-                    console.log(token);
-                    this.storage.setItem('token', token);
-                    console.log('from storage', this.storage.getItem('token'));
-                    this.envService.token = token;
+                    if ( this.env.isMobile() ) {
+                        this.storage.setItem('token', token);
+                        console.log('token from NativeStorage : ', this.storage.getItem('token'));
+                    } else {
+                        localStorage.setItem('token', JSON.stringify(token));
+                        console.log('token from localStorage : ', localStorage.getItem('token'));
+                    }
                     this.authService.isLoggedIn = true;
                     this.alertService.presentToast('Connecté·e');
                     this.dismissLogin();
