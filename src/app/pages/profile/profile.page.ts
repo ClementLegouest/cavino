@@ -3,6 +3,7 @@ import {User} from '../../models/user';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {EnvService} from '../../services/env.service';
 import {AuthService} from '../../services/auth.service';
+import {MenuService} from '../../services/menu.service';
 
 @Component({
   selector: 'app-profile',
@@ -18,9 +19,11 @@ export class ProfilePage implements OnInit {
   constructor(
       private authService: AuthService,
       private env: EnvService,
+      private menuService: MenuService,
       private storage: NativeStorage
   ) {
-    this.menuList = env.appPagesNew;
+    this.menuList = menuService.appPages;
+    console.log(this.menuList);
     this.user = JSON.parse(localStorage.getItem('user'));
     this.isMobile = env.isMobile();
   }

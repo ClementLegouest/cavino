@@ -16,6 +16,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: './home/home.module#HomePageModule', canActivate: [AuthGuard] },
   { path: 'list', loadChildren: './list/list.module#ListPageModule', canActivate: [AuthGuard] },
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
+  { path: 'cellars', loadChildren: './pages/cellars/cellars.module#CellarsPageModule' },
 ];
 
 @NgModule({

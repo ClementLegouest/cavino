@@ -5,6 +5,7 @@ import { User } from 'src/app/models/user';
 import {Token} from '../../models/token';
 import {EnvService} from '../../services/env.service';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import {MenuService} from '../../services/menu.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -21,9 +22,10 @@ export class DashboardPage implements OnInit {
         private menu: MenuController,
         private authService: AuthService,
         private env: EnvService,
+        private menuService: MenuService,
         private storage: NativeStorage) {
         this.menu.enable(true);
-        this.menuList = env.appPagesNew;
+        this.menuList = menuService.appPages;
     }
 
     ngOnInit() {

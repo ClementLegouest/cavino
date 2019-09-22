@@ -8,29 +8,13 @@ import {Platform} from '@ionic/angular';
 })
 export class EnvService {
 
-  public appPagesNew = [
-      {
-        title: 'Home',
-        url: '/home',
-        icon: 'home'
-      },
-      {
-        title: 'Dashboard',
-        url: '/dashboard',
-        icon: 'home'
-      },
-      {
-        title: 'Profil',
-        url: '/profile',
-        icon: 'person'
-      },
-  ];
-
   private _API_URL = 'https://esgi-cavino-api.herokuapp.com/api/';
   private SIGNIN_URI = 'signin';
   private _SIGNIN_URL = this._API_URL + this.SIGNIN_URI;
   private USER_URI = 'user/';
   private _USER_URL = this._API_URL + this.USER_URI;
+  private _USERCELLARS_URI = 'user/cellars/';
+  private _USERCELLARS_URL = this._API_URL + this._USERCELLARS_URI;
 
   private _token: Token;
   private _user: User;
@@ -57,6 +41,10 @@ export class EnvService {
     return this._USER_URL;
   }
 
+  get USERCELLARS_URL(): string {
+    return this._USERCELLARS_URL;
+  }
+
   get token(): Token {
     return this._token;
   }
@@ -64,7 +52,6 @@ export class EnvService {
   set token(value: Token) {
     this._token = value;
   }
-
 
   get user(): User {
     return this._user;
