@@ -24,8 +24,10 @@ export class LandingPage implements OnInit {
   }
 
   ionViewWillEnter() {
-    if (!(this.env.token.token === '')) {
-      this.router.navigateByUrl('dashboard');
+    try {
+      const test = this.authService.token;
+    } catch (e) {
+      console.log('Erreur attrapée');
     }
   }
 
