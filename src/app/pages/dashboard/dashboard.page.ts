@@ -15,6 +15,7 @@ export class DashboardPage implements OnInit {
 
     private token: Token;
     private user: User;
+    private menuList;
 
     constructor(
         private menu: MenuController,
@@ -22,6 +23,7 @@ export class DashboardPage implements OnInit {
         private env: EnvService,
         private storage: NativeStorage) {
         this.menu.enable(true);
+        this.menuList = env.appPagesNew;
     }
 
     ngOnInit() {

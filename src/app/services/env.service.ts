@@ -7,6 +7,24 @@ import {Token} from '../models/token';
 })
 export class EnvService {
 
+  public appPagesNew = [
+      {
+        title: 'Home',
+        url: '/home',
+        icon: 'home'
+      },
+      {
+        title: 'Dashboard',
+        url: '/dashboard',
+        icon: 'home'
+      },
+      {
+        title: 'Profil',
+        url: '/profile',
+        icon: 'person'
+      },
+  ];
+
   private _API_URL = 'https://esgi-cavino-api.herokuapp.com/api/';
   private SIGNIN_URI = 'signin';
   private _SIGNIN_URL = this._API_URL + this.SIGNIN_URI;
