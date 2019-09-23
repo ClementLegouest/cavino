@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable, OnInit} from '@angular/core';
 import { tap } from 'rxjs/operators';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { EnvService } from './env.service';
@@ -12,7 +12,7 @@ import {Router} from '@angular/router';
   providedIn: 'root'
 })
 
-export class AuthService {
+export class AuthService implements OnInit {
 
     private options = { headers: new HttpHeaders({accept: 'application/json', 'Content-Type': 'application/json'})};
     isLoggedIn = false;
@@ -24,8 +24,15 @@ export class AuthService {
       private storage: NativeStorage,
       private env: EnvService,
       private router: Router
-  ) { }
+  ) {}
 
+    async ngOnInit() {
+        if (this.env.isMobile()) {
+            this.token = JSON.parse(await this.storage.getItem('token'));
+        } else {
+            this.token = JSON.parse(localStorage.getItem('token'));
+        }
+    }
 
     get token(): Token {
         return this._token;

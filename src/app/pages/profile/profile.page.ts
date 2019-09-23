@@ -14,7 +14,6 @@ export class ProfilePage implements OnInit {
 
   private user: User;
   private menuList;
-  private isMobile: boolean;
 
   constructor(
       private authService: AuthService,
@@ -24,8 +23,6 @@ export class ProfilePage implements OnInit {
   ) {
     this.menuList = menuService.appPages;
     console.log(this.menuList);
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.isMobile = env.isMobile();
   }
 
   async ngOnInit() {

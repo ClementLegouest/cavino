@@ -26,8 +26,13 @@ export class CellarsService {
     /** GET : Get all the cellars of one user by uuid */
 
     getAllCellarsOfOneUser(uuid: string): Observable<Array<Cellar>> {
-        const bearer = this.authService.bearer;
-        const httpOptions = this.authService.options;
+        const bearer = 'Bearer ' + this.authService.token;
+        const httpOptions = {
+            headers: new HttpHeaders({
+                accept: 'application/json',
+                Authorization: bearer,
+            })
+        };
         return this.http.get<Array<Cellar>>(this.USER_CELLARS_URL + uuid, httpOptions);
         // return new Array<Cellar>();
     }

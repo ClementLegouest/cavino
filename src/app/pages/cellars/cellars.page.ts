@@ -22,6 +22,7 @@ export class CellarsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getUserCellars();
   }
 
   getUserCellars() {

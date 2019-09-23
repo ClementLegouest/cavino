@@ -7,11 +7,6 @@ export class MenuService {
 
   private _appPages = [
     {
-      title: 'Home',
-      url: '/home',
-      icon: 'home'
-    },
-    {
       title: 'Dashboard',
       url: '/dashboard',
       icon: 'home'

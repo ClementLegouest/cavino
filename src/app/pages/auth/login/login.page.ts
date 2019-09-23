@@ -53,6 +53,7 @@ export class LoginPage implements OnInit {
                     } else {
                         localStorage.setItem('token', JSON.stringify(token));
                     }
+                    this.authService.token = token;
                     this.authService.isLoggedIn = true;
                     this.alertService.presentToast('Connecté·e');
                     this.dismissLogin();
