@@ -49,11 +49,9 @@ export class LoginPage implements OnInit {
             this.authService.login(form.value.email, form.value.password)
                 .subscribe((token) => {
                     if ( this.env.isMobile() ) {
-                        this.storage.setItem('token', token);
-                        console.log('token from NativeStorage : ', this.storage.getItem('token'));
+                        this.storage.setItem('token', JSON.stringify(token));
                     } else {
                         localStorage.setItem('token', JSON.stringify(token));
-                        console.log('token from localStorage : ', localStorage.getItem('token'));
                     }
                     this.authService.isLoggedIn = true;
                     this.alertService.presentToast('Connecté·e');

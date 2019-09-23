@@ -17,6 +17,7 @@ export class AuthService {
     private options = { headers: new HttpHeaders({accept: 'application/json', 'Content-Type': 'application/json'})};
     isLoggedIn = false;
     private _token: Token;
+    private _user: User;
 
   constructor(
       private http: HttpClient,
@@ -25,8 +26,21 @@ export class AuthService {
       private router: Router
   ) { }
 
+
     get token(): Token {
         return this._token;
+    }
+
+    set token(value: Token) {
+        this._token = value;
+    }
+
+    get user(): User {
+        return this._user;
+    }
+
+    set user(value: User) {
+        this._user = value;
     }
 
     /** POST : Connect to the application */
@@ -48,7 +62,7 @@ export class AuthService {
         this.router.navigateByUrl('/');
   }
 
-  user(uuid: string, token: string): Observable<User> {
+  getUserInfo(uuid: string, token: string): Observable<User> {
       const bearer = 'Bearer ' + token;
       const httpOptions = {
           headers: new HttpHeaders({
