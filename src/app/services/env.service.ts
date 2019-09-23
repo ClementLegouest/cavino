@@ -11,6 +11,8 @@ export class EnvService {
   private _API_URL = 'https://esgi-cavino-api.herokuapp.com/api/';
   private SIGNIN_URI = 'signin';
   private _SIGNIN_URL = this._API_URL + this.SIGNIN_URI;
+  private SIGNUP_URI = '';
+  private _SIGNUP_URL = this.API_URL + this.SIGNUP_URI;
   private USER_URI = 'user/';
   private _USER_URL = this._API_URL + this.USER_URI;
   private _USERCELLARS_URI = 'user/cellars/';
@@ -39,6 +41,10 @@ export class EnvService {
 
   get SIGNIN_URL(): string {
     return this._SIGNIN_URL;
+  }
+
+  get SIGNUP_URL(): string {
+    return this._SIGNUP_URL;
   }
 
   get USER_URL(): string {
