@@ -26,13 +26,8 @@ export class ProfilePage implements OnInit {
   }
 
   async ngOnInit() {
-    if (this.env.isMobile()) {
-      console.log('You are on mobile');
-      this.user = await this.storage.getItem('user');
-    } else {
-      console.log('You are not on mobile');
-      this.user = JSON.parse(localStorage.getItem('user'));
-    }
+    this.user = this.authService.user;
+    console.log('user from AuthService on profile page : ' + this.user);
   }
 
   disconnect() {

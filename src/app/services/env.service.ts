@@ -15,6 +15,10 @@ export class EnvService {
   private _USER_URL = this._API_URL + this.USER_URI;
   private _USERCELLARS_URI = 'user/cellars/';
   private _USERCELLARS_URL = this._API_URL + this._USERCELLARS_URI;
+  private ADDCELLARURI = 'cellar';
+  private _ADDCELLARURL = this.API_URL + this.ADDCELLARURI;
+  private DELETECELLARBYIDANDUUID_URI = '/cellar/{id}/{userUUID}';
+  private _DELETECELLARBYIDANDUUID_URL = this.API_URL + this.DELETECELLARBYIDANDUUID_URI;
 
   private _token: Token;
   private _user: User;
@@ -43,6 +47,14 @@ export class EnvService {
 
   get USERCELLARS_URL(): string {
     return this._USERCELLARS_URL;
+  }
+
+  get ADDCELLARURL(): string {
+    return this._ADDCELLARURL;
+  }
+
+  get DELETECELLARBYIDANDUUID_URL(): string {
+    return this._DELETECELLARBYIDANDUUID_URL;
   }
 
   get token(): Token {

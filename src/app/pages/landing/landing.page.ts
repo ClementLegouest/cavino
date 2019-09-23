@@ -17,8 +17,7 @@ export class LandingPage implements OnInit {
       private modalController: ModalController,
       private menu: MenuController,
       private authService: AuthService,
-      private router: Router,
-      private env: EnvService
+      private router: Router
   ) {
     this.menu.enable(false);
   }

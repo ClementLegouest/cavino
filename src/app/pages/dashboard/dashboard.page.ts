@@ -24,7 +24,11 @@ export class DashboardPage implements OnInit {
         private env: EnvService,
         private menuService: MenuService,
         private storage: NativeStorage) {
-        this.menu.enable(true);
+        if ( env.isMobile() ) {
+            this.menu.enable(true);
+        } else {
+            this.menu.enable(false);
+        }
         this.menuList = menuService.appPages;
     }
 

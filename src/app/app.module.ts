@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { NewCellarPage } from './pages/new-cellar/new-cellar.page';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [
     StatusBar,

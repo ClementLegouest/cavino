@@ -1,43 +1,51 @@
 <ion-header>
-  <ion-toolbar>
-    <nav>
-      <ion-list>
-        <ion-item>
-          <img src="/assets/icon/favicon.png" class="logo">
-        </ion-item>
-        <ion-item>CAVINO</ion-item>
-        <ion-item *ngFor="let menu of menuList">
-          <ion-label [routerLink]="menu.url">{{ menu.title }}</ion-label>
-        </ion-item>
-      </ion-list>
-    </nav>
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-button class="logout_button" slot="end" color="danger" expand="full" color="primary" (click)="disconnect()">Déconnexion</ion-button>
-  </ion-toolbar>
+    <ion-toolbar>
+        <nav>
+            <ion-list>
+                <ion-item>
+                    <img src="/assets/icon/favicon.png" class="logo">
+                </ion-item>
+                <ion-item>CAVINO</ion-item>
+                <ion-item *ngFor="let menu of menuList">
+                    <ion-label [routerLink]="menu.url">{{ menu.title }}</ion-label>
+                </ion-item>
+            </ion-list>
+        </nav>
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-button class="logout_button" slot="end" color="danger" expand="full" color="primary" (click)="disconnect()">Déconnexion</ion-button>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div *ngIf="cellarList != undefined">
-    <ion-list>
-      <ion-card *ngFor="let cellar of cellarList">
-        <ion-card-header>
-          {{ cellar.name }}
-        </ion-card-header>
-        <ion-card-content>
-          <ion-label>Largeur : {{ cellar.width }}</ion-label><br />
-          <ion-label>Hauteur : {{ cellar.height }}</ion-label><br />
-          <ion-button>
-            editer
-            <ion-icon slot="end" name="cut" color="green"></ion-icon>
-          </ion-button>
-          <ion-button>
-            supprimer
-            <ion-icon slot="end" name="close-circle" color="danger"></ion-icon>
-          </ion-button>
-        </ion-card-content>
-      </ion-card>
-    </ion-list>
-  </div>
+    <div *ngIf="cellarList.length == 0">
+        <ion-card>
+            <ion-card-content>Il semblerait que votre liste de celliers soit vide, ajoutez-en un maintenant en cliquant sur "Ajouter"</ion-card-content>
+        </ion-card>
+    </div>
+    <div *ngIf="cellarList != undefined">
+        <ion-list>
+            <ion-card *ngFor="let cellar of cellarList">
+                <ion-card-header>
+                    {{ cellar.name }}
+                </ion-card-header>
+                <ion-card-content>
+                    <ion-label>Largeur : {{ cellar.width }}</ion-label><br />
+                    <ion-label>Hauteur : {{ cellar.height }}</ion-label><br />
+                    <ion-button class="cellar_card_button">
+                        editer
+                        <ion-icon slot="start" name="cut" color="green"></ion-icon>
+                    </ion-button>
+                    <ion-button class="cellar_card_button" (click)="deleteCellar(cellar.id)">
+                        supprimer
+                        <ion-icon slot="start" name="close-circle" color="danger"></ion-icon>
+                    </ion-button>
+                </ion-card-content>
+            </ion-card>
+        </ion-list>
+    </div>
+    <div>
+        <ion-button class="new_cellar_button" slot="end" color="success" color="primary" (click)="(newCellar())">Nouveau</ion-button>
+    </div>
 </ion-content>

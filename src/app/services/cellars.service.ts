@@ -36,4 +36,38 @@ export class CellarsService {
         return this.http.get<Array<Cellar>>(this.USER_CELLARS_URL + uuid, httpOptions);
         // return new Array<Cellar>();
     }
+
+    /** POST : Add one cellar to one user by uuid */
+    // TODO : HTTP POST CALL
+    createCellarForUuid(nameValue: string, widthValue: number, heightValue: number): Observable<Cellar> {
+        const bearer = 'Bearer ' + this.authService.token.token;
+        const httpOptions = {
+            headers: new HttpHeaders({
+                accept: 'application/json',
+                Authorization: bearer,
+                'Content-Type': 'applicatrion/json'
+            })
+        };
+        const postData = {
+            name: nameValue,
+            width: widthValue,
+            height: heightValue,
+            userUUID: this.authService.user.uuid
+        };
+        console.log(postData);
+        return this.http.post<Cellar>(this.envService.ADDCELLARURL, postData, httpOptions);
+    }
+
+    /** DELETE : Delete one cellar by id and uuid */
+    // TODO : HTTP DELETE CALL
+    deleteCellarByIdAndUuid(id: number, uuid: string, token: string) {
+        const bearer = 'Bearer ' + token;
+        const httpOptions = {
+            headers: new HttpHeaders({
+                accept: 'application/json',
+                Authorization: bearer,
+            })
+        };
+        return this.http.delete(this.envService.DELETECELLARBYIDANDUUID_URL, httpOptions);
+    }
 }
