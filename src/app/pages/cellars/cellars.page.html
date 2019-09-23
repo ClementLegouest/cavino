@@ -19,5 +19,25 @@
 </ion-header>
 
 <ion-content>
-
+  <div *ngIf="cellarList != undefined">
+    <ion-list>
+      <ion-card *ngFor="let cellar of cellarList">
+        <ion-card-header>
+          {{ cellar.name }}
+        </ion-card-header>
+        <ion-card-content>
+          <ion-label>Largeur : {{ cellar.width }}</ion-label><br />
+          <ion-label>Hauteur : {{ cellar.height }}</ion-label><br />
+          <ion-button>
+            editer
+            <ion-icon slot="end" name="cut" color="green"></ion-icon>
+          </ion-button>
+          <ion-button>
+            supprimer
+            <ion-icon slot="end" name="close-circle" color="danger"></ion-icon>
+          </ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+  </div>
 </ion-content>

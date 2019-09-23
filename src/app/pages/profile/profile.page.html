@@ -20,6 +20,7 @@
 
 <ion-content>
   <div *ngIf="user != undefined">
+    <h2 class="section_title">Identité</h2>
     <ion-list>
       <ion-item>
         <ion-label>Prénom : {{ user.firstname }}</ion-label>
@@ -34,5 +35,6 @@
         <ion-label>Adresse : {{ user.address }}</ion-label>
       </ion-item>
     </ion-list>
+    <h2 class="section_title">Préférences</h2>
   </div>
 </ion-content>

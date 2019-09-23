@@ -3,6 +3,7 @@ import {MenuService} from '../../services/menu.service';
 import {AuthService} from '../../services/auth.service';
 import {EnvService} from '../../services/env.service';
 import {CellarsService} from '../../services/cellars.service';
+import {Cellar} from '../../models/cellar';
 
 @Component({
   selector: 'app-cellars',
@@ -12,6 +13,7 @@ import {CellarsService} from '../../services/cellars.service';
 export class CellarsPage implements OnInit {
 
   private menuList;
+  private cellarList: Array<Cellar>;
 
   constructor(
       private menuService: MenuService,
@@ -26,10 +28,10 @@ export class CellarsPage implements OnInit {
   }
 
   getUserCellars() {
-    const uuid = this.authService.token.uuid;
-    this.cellarService.getAllCellarsOfOneUser(uuid)
+    this.cellarService.getAllCellarsOfOneUser(this.authService.token.uuid, this.authService.token.token)
         .subscribe((cellars) => {
-          console.log('data');
+          console.log(cellars);
+          this.cellarList = cellars;
         });
   }
 

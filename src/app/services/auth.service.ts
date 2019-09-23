@@ -69,6 +69,8 @@ export class AuthService implements OnInit {
         this.router.navigateByUrl('/');
   }
 
+  /** GET : Get user infos */
+
   getUserInfo(uuid: string, token: string): Observable<User> {
       const bearer = 'Bearer ' + token;
       const httpOptions = {
