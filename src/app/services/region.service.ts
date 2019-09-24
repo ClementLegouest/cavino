@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {EnvService} from './env.service';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
-import {WineType} from '../models/wine-type';
 import {Region} from '../models/region';
 
 @Injectable({

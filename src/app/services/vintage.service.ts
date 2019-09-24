@@ -3,12 +3,12 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {EnvService} from './env.service';
 import {AuthService} from './auth.service';
 import {Observable} from 'rxjs';
-import {Domain} from '../models/domain';
+import {Vintage} from '../models/vintage';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DomainService {
+export class VintageService {
 
   constructor(
       private http: HttpClient,
@@ -16,7 +16,7 @@ export class DomainService {
       private auth: AuthService,
   ) { }
 
-  getAllDomains(): Observable<Array<Domain>> {
+  getAllVintages(): Observable<Array<Vintage>> {
     const bearer = 'Bearer ' + this.auth.token.token;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -24,6 +24,6 @@ export class DomainService {
         Authorization: bearer,
       })
     };
-    return this.http.get<Array<Domain>>(this.env.GETALLREGIONSURL, httpOptions);
+    return this.http.get<Array<Vintage>>(this.env.GETALLREGIONSURL, httpOptions);
   }
 }
