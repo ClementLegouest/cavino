@@ -21,6 +21,10 @@ export class EnvService {
   private _ADDCELLARURL = this.API_URL + this.ADDCELLARURI;
   private DELETECELLARBYIDANDUUID_URI = '/cellar/{id}/{userUUID}';
   private _DELETECELLARBYIDANDUUID_URL = this.API_URL + this.DELETECELLARBYIDANDUUID_URI;
+  private GETALLWINETYPESURI = 'wineType';
+  private _GETALLWINETYPESURL = this.API_URL + this.GETALLWINETYPESURI;
+  private GETALLREGIONSURI = 'region';
+  private _GETALLREGIONSURL = this.API_URL + this.GETALLREGIONSURI;
 
   private _token: Token;
   private _user: User;
@@ -61,6 +65,14 @@ export class EnvService {
 
   get DELETECELLARBYIDANDUUID_URL(): string {
     return this._DELETECELLARBYIDANDUUID_URL;
+  }
+
+  get GETALLWINETYPESURL(): string {
+    return this._GETALLWINETYPESURL;
+  }
+
+  get GETALLREGIONSURL(): string {
+    return this._GETALLREGIONSURL;
   }
 
   get token(): Token {
