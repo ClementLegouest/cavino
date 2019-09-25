@@ -5,6 +5,7 @@ import { LoginPage } from '../auth/login/login.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnvService } from '../../services/env.service';
 import { Router } from '@angular/router';
+import {NativeStorage} from '@ionic-native/native-storage/ngx';
 
 @Component({
   selector: 'app-landing',
@@ -17,17 +18,23 @@ export class LandingPage implements OnInit {
       private modalController: ModalController,
       private menu: MenuController,
       private authService: AuthService,
-      private router: Router
+      private router: Router,
+      private env: EnvService,
+      private storage: NativeStorage,
   ) {
     this.menu.enable(false);
   }
 
   ionViewWillEnter() {
-    try {
-      const test = this.authService.token;
-    } catch (e) {
-      console.log('Erreur attrapée');
-    }
+      if (this.env.isMobile()) {
+          if ( this.storage.getItem('token') !== null ) {
+              this.router.navigateByUrl('/profile');
+          }
+      } else {
+          if ( localStorage.getItem('token') !== null) {
+              this.router.navigateByUrl('/profile');
+          }
+      }
   }
 
   ngOnInit() {
