@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: 'profile', loadChildren: './pages/profile/profile.module#ProfilePageModule' },
   { path: 'cellars', loadChildren: './pages/cellars/cellars.module#CellarsPageModule' },
   { path: 'new-cellar', loadChildren: './pages/new-cellar/new-cellar.module#NewCellarPageModule' },  { path: 'cellar-detail', loadChildren: './pages/cellars/modal/cellar-detail/cellar-detail.module#CellarDetailPageModule' },
+  { path: 'cellar-edit', loadChildren: './pages/cellars/modal/cellar-edit/cellar-edit.module#CellarEditPageModule' },
 
 ];
 

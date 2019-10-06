@@ -7,6 +7,7 @@ import {NgForm} from '@angular/forms';
 import {ModalController} from '@ionic/angular';
 import {NewCellarPage} from '../new-cellar/new-cellar.page';
 import { CellarDetailPage } from './modal/cellar-detail/cellar-detail.page';
+import { CellarEditPage } from './modal/cellar-edit/cellar-edit.page';
 
 @Component({
     selector: 'app-cellars',
@@ -45,6 +46,20 @@ export class CellarsPage implements OnInit {
     async detailCellar(cellar: Cellar) {
         const detailModal = await this.modal.create({
             component: CellarDetailPage,
+            componentProps: {
+                'name': cellar.name,
+                'width': cellar.width,
+                'height': cellar.height,
+                'id': cellar.id,
+                'userUUID': cellar.userUUID
+            }
+        });
+        return await detailModal.present();
+    }
+
+    async editCellar(cellar: Cellar) {
+        const detailModal = await this.modal.create({
+            component: CellarEditPage,
             componentProps: {
                 'name': cellar.name,
                 'width': cellar.width,
