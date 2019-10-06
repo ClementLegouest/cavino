@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button class="close_button" slot="end" color="light" (click)="dismissDetail()">
+      <ion-icon name="close-circle" color="danger"></ion-icon>
+    </ion-button>
+    <ion-title>{{ name }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p>Largeur : {{ width }}</p>
+  <p>Hauteur : {{ height }}</p>
+</ion-content>

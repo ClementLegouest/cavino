@@ -5,14 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { CellarsPage } from './cellars.page';
-import {NewCellarPage} from '../new-cellar/new-cellar.page';
-import { CellarDetailPage } from './modal/cellar-detail/cellar-detail.page';
+import { CellarDetailPage } from './cellar-detail.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: CellarsPage
+    component: CellarDetailPage
   }
 ];
 
@@ -23,7 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [CellarsPage, NewCellarPage, CellarDetailPage],
-  entryComponents: [NewCellarPage, CellarDetailPage]
+  declarations: [CellarDetailPage]
 })
-export class CellarsPageModule {}
+export class CellarDetailPageModule {}

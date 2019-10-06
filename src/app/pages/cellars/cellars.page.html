@@ -33,8 +33,8 @@
                 <ion-card-content>
                     <ion-label>Largeur : {{ cellar.width }}</ion-label><br />
                     <ion-label>Hauteur : {{ cellar.height }}</ion-label><br />
-                    <ion-button class="cellar_card_button">
-                        editer
+                    <ion-button class="cellar_card_button" (click)="detailCellar(cellar)">
+                        détails
                         <ion-icon slot="start" name="cut" color="green"></ion-icon>
                     </ion-button>
                     <ion-button class="cellar_card_button" (click)="deleteCellar(cellar.id)">

@@ -6,6 +6,7 @@ import {Cellar} from '../../models/cellar';
 import {NgForm} from '@angular/forms';
 import {ModalController} from '@ionic/angular';
 import {NewCellarPage} from '../new-cellar/new-cellar.page';
+import { CellarDetailPage } from './modal/cellar-detail/cellar-detail.page';
 
 @Component({
     selector: 'app-cellars',
@@ -22,7 +23,7 @@ export class CellarsPage implements OnInit {
         private menu: MenuService,
         private auth: AuthService,
         private cellar: CellarsService,
-        private modalCtrl: ModalController,
+        private modal: ModalController,
     ) {
         this.menuList = menu.appPages;
         this.cellarList = cellar.cellarList;
@@ -40,6 +41,21 @@ export class CellarsPage implements OnInit {
             });
     }
 
+
+    async detailCellar(cellar: Cellar) {
+        const detailModal = await this.modal.create({
+            component: CellarDetailPage,
+            componentProps: {
+                'name': cellar.name,
+                'width': cellar.width,
+                'height': cellar.height,
+                'id': cellar.id,
+                'userUUID': cellar.userUUID
+            }
+        });
+        return await detailModal.present();
+    }
+
     deleteCellar(id: number) {
         this.cellar.deleteCellarByIdAndUuid(id, this.auth.token.uuid, this.auth.token.token)
             .subscribe((data) => {
@@ -52,7 +68,7 @@ export class CellarsPage implements OnInit {
     }
 
     async newCellar() {
-        const loginModal = await this.modalCtrl.create({
+        const loginModal = await this.modal.create({
             component: NewCellarPage,
         });
         return await loginModal.present();
