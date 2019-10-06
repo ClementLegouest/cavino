@@ -6,6 +6,7 @@ import {Token} from '../../models/token';
 import {EnvService} from '../../services/env.service';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {MenuService} from '../../services/menu.service';
+import { CellarsService } from 'src/app/services/cellars.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -23,13 +24,12 @@ export class DashboardPage implements OnInit {
         private authService: AuthService,
         private env: EnvService,
         private menuService: MenuService,
-        private storage: NativeStorage) {
-        if ( env.isMobile() ) {
-            this.menu.enable(true);
-        } else {
-            this.menu.enable(false);
-        }
+        private storage: NativeStorage,
+        private cellar: CellarsService,
+        ) {
+        this.menu.enable(false);
         this.menuList = menuService.appPages;
+        this.getUserCellars();
     }
 
     ngOnInit() {
@@ -37,7 +37,6 @@ export class DashboardPage implements OnInit {
     }
 
     ionViewWillEnter() {
-        console.log('On est la');
         this.getUserInfo();
     }
 
@@ -45,9 +44,15 @@ export class DashboardPage implements OnInit {
         this.authService.getUserInfo(this.authService.token.uuid, this.authService.token.token)
             .subscribe((user) => {
                 this.authService.user = user;
-                console.log('user from AuthService : ', this.authService.user);
             });
     }
+
+    getUserCellars() {
+        this.cellar.getAllCellarsOfOneUser(this.authService.token.uuid, this.authService.token.token)
+            .subscribe((cellars) => {
+                this.cellar.cellarList = cellars;
+            });
+      }
 
     disconnect() {
         this.authService.logout();

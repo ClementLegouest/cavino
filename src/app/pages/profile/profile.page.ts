@@ -22,12 +22,10 @@ export class ProfilePage implements OnInit {
       private storage: NativeStorage
   ) {
     this.menuList = menuService.appPages;
-    console.log(this.menuList);
   }
 
   async ngOnInit() {
     this.user = this.authService.user;
-    console.log('user from AuthService on profile page : ' + this.user);
   }
 
   disconnect() {

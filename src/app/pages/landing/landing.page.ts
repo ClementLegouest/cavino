@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { EnvService } from '../../services/env.service';
 import { Router } from '@angular/router';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import { CellarsService } from 'src/app/services/cellars.service';
 
 @Component({
   selector: 'app-landing',
@@ -26,15 +27,7 @@ export class LandingPage implements OnInit {
   }
 
   ionViewWillEnter() {
-      if (this.env.isMobile()) {
-          if ( this.storage.getItem('token') !== null ) {
-              this.router.navigateByUrl('/profile');
-          }
-      } else {
-          if ( localStorage.getItem('token') !== null) {
-              this.router.navigateByUrl('/profile');
-          }
-      }
+
   }
 
   ngOnInit() {

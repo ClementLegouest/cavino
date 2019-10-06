@@ -13,6 +13,7 @@ export class CellarsService {
 
     private USER_CELLARS_URL: string;
     private token: Token;
+    public cellarList: Array<Cellar>;
 
     constructor(
         private envService: EnvService,
@@ -34,7 +35,6 @@ export class CellarsService {
             })
         };
         return this.http.get<Array<Cellar>>(this.USER_CELLARS_URL + uuid, httpOptions);
-        // return new Array<Cellar>();
     }
 
     /** POST : Add one cellar to one user by uuid */

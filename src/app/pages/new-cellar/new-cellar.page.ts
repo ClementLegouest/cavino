@@ -24,7 +24,6 @@ export class NewCellarPage implements OnInit {
   }
 
   createCellar(cellarForm: NgForm) {
-    console.log(cellarForm);
     this.cellarService.createCellarForUuid(
         cellarForm.value.name,
         cellarForm.value.width,

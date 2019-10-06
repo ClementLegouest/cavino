@@ -15,6 +15,8 @@ import {NativeStorage} from '@ionic-native/native-storage/ngx';
 })
 export class LoginPage implements OnInit {
 
+    disabledButton = false;
+
     constructor(
         private modalController: ModalController,
         private authService: AuthService,
@@ -46,6 +48,7 @@ export class LoginPage implements OnInit {
         if (form.value.email === '' || form.value.password === '') {
             this.alertService.presentToast('identifiants non renseignés');
         } else {
+            this.disabledButton = true;
             this.authService.login(form.value.email, form.value.password)
                 .subscribe((token) => {
                     if ( this.env.isMobile() ) {
@@ -59,6 +62,7 @@ export class LoginPage implements OnInit {
                     this.dismissLogin();
                     this.router.navigateByUrl('/dashboard');
                 });
+            this.disabledButton = false;
         }
     }
 }
