@@ -25,6 +25,8 @@ export class EnvService {
   private _GETALLWINETYPESURL = this.API_URL + this.GETALLWINETYPESURI;
   private GETALLREGIONSURI = 'region';
   private _GETALLREGIONSURL = this.API_URL + this.GETALLREGIONSURI;
+  private GETALLPOSITIONINCELLARBYCELLARIDURI = 'positionInCellar/byCellarId/';
+  private _GETALLPOSITIONINCELLARBYCELLARIDURL = this.API_URL + this.GETALLPOSITIONINCELLARBYCELLARIDURI;
 
   private _token: Token;
   private _user: User;
@@ -73,6 +75,10 @@ export class EnvService {
 
   get GETALLREGIONSURL(): string {
     return this._GETALLREGIONSURL;
+  }
+
+  get GETALLPOSITIONINCELLARBYCELLARIDURL(): string {
+    return this._GETALLPOSITIONINCELLARBYCELLARIDURL;
   }
 
   get token(): Token {

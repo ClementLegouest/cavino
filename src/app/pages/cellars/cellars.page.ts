@@ -72,7 +72,7 @@ export class CellarsPage implements OnInit {
     }
 
     deleteCellar(id: number) {
-        this.cellar.deleteCellarByIdAndUuid(id, this.auth.token.uuid, this.auth.token.token)
+        this.cellar.deleteCellarByIdAndUuid(id)
             .subscribe((data) => {
                 console.log(data);
             });
