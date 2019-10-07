@@ -38,23 +38,21 @@ export class CellarsService {
     }
 
     /** POST : Add one cellar to one user by uuid */
-    // TODO : HTTP POST CALL
-    createCellarForUuid(nameValue: string, widthValue: number, heightValue: number): Observable<Cellar> {
+    createCellarForUuid(name: string, width: number, height: number): Observable<Cellar> {
         const bearer = 'Bearer ' + this.auth.token.token;
         const httpOptions = {
             headers: new HttpHeaders({
-                accept: 'application/json',
-                Authorization: bearer,
+                'accept': 'application/json',
+                'Authorization': bearer,
                 'Content-Type': 'applicatrion/json'
             })
         };
         const postData = {
-            name: nameValue,
-            width: widthValue,
-            height: heightValue,
-            userUUID: this.auth.user.uuid
+            "name": name,
+            "width": Number(width),
+            "height": Number(height),
+            "userUUID": this.auth.user.uuid
         };
-        console.log(postData);
         return this.http.post<Cellar>(this.env.ADDCELLARURL, postData, httpOptions);
     }
 
@@ -75,10 +73,10 @@ export class CellarsService {
         const bearer = 'Bearer ' + this.auth.token.token;
         const httpOptions = {
             headers: new HttpHeaders({
-                accept: 'application/json',
-                Authorization: bearer,
+                "accept": "application/json",
+                "Authorization": bearer,
             })
         };
-        return this.http.get<Array<PositionInCellar>>(this.env.GETALLPOSITIONINCELLARBYCELLARIDURL + '/' + id, httpOptions)
+        return this.http.get<Array<PositionInCellar>>(this.env.GETALLPOSITIONINCELLARBYCELLARIDURL + id + "?offset=0&limit=20", httpOptions)
     }
 }

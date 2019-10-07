@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms';
-import {CellarsService} from '../../services/cellars.service';
-import {ModalController} from '@ionic/angular';
+import { NgForm } from '@angular/forms';
+import { CellarsService } from '../../services/cellars.service';
+import { ModalController, AlertController } from '@ionic/angular';
+import { AlertService } from 'src/app/services/alert.service';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-new-cellar',
@@ -13,6 +15,7 @@ export class NewCellarPage implements OnInit {
   constructor(
       private cellarService: CellarsService,
       private modalCtrl: ModalController,
+      private alert: AlertService,
   ) { }
 
   ngOnInit() {
@@ -24,13 +27,16 @@ export class NewCellarPage implements OnInit {
   }
 
   createCellar(cellarForm: NgForm) {
-    this.cellarService.createCellarForUuid(
-        cellarForm.value.name,
-        cellarForm.value.width,
-        cellarForm.value.height)
-        .subscribe((cellar) => {
-          console.log(cellar);
-        });
+    if (cellarForm.value.name === '' || cellarForm.value.width === '' || cellarForm.value.height === '') {
+      this.alert.presentToast('Renseignez tous les champs');
+    } else {
+      this.cellarService.createCellarForUuid(cellarForm.value.name, Number(cellarForm.value.width), Number(cellarForm.value.height))
+          .subscribe((cellar) => {
+            console.log(cellar);
+          },
+          (error) => {
+            this.alert.presentToast(error.status + ' : ' + error.statusText + '\nLe cellier n\'a pas été créé.');
+          });
+    }
   }
-
 }

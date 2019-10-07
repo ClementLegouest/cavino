@@ -32,25 +32,22 @@ export class CellarsPage implements OnInit {
 
     ngOnInit() { }
 
-    createCellar(cellarForm: NgForm) {
-        this.cellar.createCellarForUuid(
-            cellarForm.value.name,
-            cellarForm.value.width,
-            cellarForm.value.height)
-            .subscribe((cellar) => {
-                console.log(cellar);
-            });
+    async newCellar() {
+        const loginModal = await this.modal.create({
+            component: NewCellarPage,
+        });
+        return await loginModal.present();
     }
 
-
     async detailCellar(cellar: Cellar) {
+        console.log(cellar);
         const detailModal = await this.modal.create({
             component: CellarDetailPage,
             componentProps: {
                 'name': cellar.name,
-                'width': cellar.width,
-                'height': cellar.height,
-                'id': cellar.id,
+                'width': cellar.width.toString(),
+                'height': cellar.height.toString(),
+                'id': cellar.id.toString(),
                 'userUUID': cellar.userUUID
             }
         });
@@ -80,12 +77,5 @@ export class CellarsPage implements OnInit {
 
     disconnect() {
         this.auth.logout();
-    }
-
-    async newCellar() {
-        const loginModal = await this.modal.create({
-            component: NewCellarPage,
-        });
-        return await loginModal.present();
     }
 }

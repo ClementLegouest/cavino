@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { CellarEditPage } from '../cellar-edit/cellar-edit.page';
 import { PositionInCellar } from 'src/app/models/position-in-cellar';
 import { CellarsService } from 'src/app/services/cellars.service';
+import { AlertService } from 'src/app/services/alert.service';
+import { Cellar } from 'src/app/models/cellar';
 
 @Component({
   selector: 'app-cellar-detail',
@@ -17,20 +19,29 @@ export class CellarDetailPage implements OnInit {
   @Input() id: number;
   @Input() userUUID: string;
   private positionsList: Array<PositionInCellar>;
+  private cellar: Cellar;
 
   constructor(
     private modal: ModalController,
-    private cellar: CellarsService,
-  ) { }
+    private cellars: CellarsService,
+    private alert: AlertService,
+  ) {
+    this.getPositions();
+  }
 
   ngOnInit() {
   }
 
   getPositions() {
-    this.cellar.getAllPositionsInCellarByCellarId(this.id)
+    this.cellars.getAllPositionsInCellarByCellarId(Number(this.id))
     .subscribe((positionsList) => {
       this.positionsList = positionsList;
-    });
+      console.log(positionsList);
+    }),(error) => {
+      console.log(error.status + ' ' + error.statusText);
+      this.alert.presentToast(error.status + ' ' + error.statusText);
+    };
+    ;
   }
 
   // Dismiss Detail Modal

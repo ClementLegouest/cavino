@@ -18,13 +18,12 @@ export class LoginPage implements OnInit {
     disabledButton = false;
 
     constructor(
-        private modalController: ModalController,
-        private authService: AuthService,
+        private modal: ModalController,
+        private auth: AuthService,
         private router: Router,
-        private alertService: AlertService,
-        private envService: EnvService,
-        private storage: NativeStorage,
-        private env: EnvService
+        private alert: AlertService,
+        private env: EnvService,
+        private storage: NativeStorage
     ) { }
 
     ngOnInit() {
@@ -32,13 +31,13 @@ export class LoginPage implements OnInit {
 
     // Dismiss Login Modal
     dismissLogin() {
-        this.modalController.dismiss();
+        this.modal.dismiss();
     }
 
     // On Register button tap, dismiss login modal and open register modal
     async registerModal() {
         this.dismissLogin();
-        const registerModal = await this.modalController.create({
+        const registerModal = await this.modal.create({
             component: RegisterPage
         });
         return await registerModal.present();
@@ -46,22 +45,21 @@ export class LoginPage implements OnInit {
 
     login(form: NgForm) {
         if (form.value.email === '' || form.value.password === '') {
-            this.alertService.presentToast('identifiants non renseignés');
+            this.alert.presentToast('identifiants non renseignés');
         } else {
             this.disabledButton = true;
-            this.authService.login(form.value.email, form.value.password)
+            this.auth.login(form.value.email, form.value.password)
                 .subscribe((token) => {
-                    if ( this.env.isMobile() ) {
-                        this.storage.setItem('token', JSON.stringify(token));
-                    } else {
-                        localStorage.setItem('token', JSON.stringify(token));
-                    }
-                    this.authService.token = token;
-                    this.authService.isLoggedIn = true;
-                    this.alertService.presentToast('Connecté·e');
+                    this.auth.token = token;
+                    this.auth.isLoggedIn = true;
+                    this.alert.presentToast('Connecté·e');
                     this.dismissLogin();
                     this.router.navigateByUrl('/dashboard');
-                });
+                }), (error: { status: string; statusText: string; }) => {
+                    console.log('On est dans l\'erreur');
+                    this.alert.presentToast(error.status + ' ' + error.statusText);
+                    console.log(error.status + ' ' + error.statusText);
+                };
             this.disabledButton = false;
         }
     }
