@@ -23,8 +23,12 @@ export class EnvService {
   private _DELETECELLARBYIDANDUUID_URL = this.API_URL + this.DELETECELLARBYIDANDUUID_URI;
   private GETALLWINETYPESURI = 'wineType';
   private _GETALLWINETYPESURL = this.API_URL + this.GETALLWINETYPESURI;
-  private GETALLREGIONSURI = 'region';
+  private GETALLREGIONSURI = 'region?offset=0&limit=20';
   private _GETALLREGIONSURL = this.API_URL + this.GETALLREGIONSURI;
+  private GETALLCOUNTRIESURI = 'country?offset=0&limit=20';
+  private _GETALLCOUNTRIESURL = this.API_URL + this.GETALLCOUNTRIESURI;
+  private GETALLBOTTLESURI = 'bottle?offset=0&limit=20';
+  private _GETALLBOTTLESURL = this.API_URL + this.GETALLBOTTLESURI;
   private GETALLPOSITIONINCELLARBYCELLARIDURI = 'positionInCellar/byCellarId/';
   private _GETALLPOSITIONINCELLARBYCELLARIDURL = this.API_URL + this.GETALLPOSITIONINCELLARBYCELLARIDURI;
 
@@ -75,6 +79,14 @@ export class EnvService {
 
   get GETALLREGIONSURL(): string {
     return this._GETALLREGIONSURL;
+  }
+
+  get GETALLCOUNTRIESURL(): string {
+    return this._GETALLCOUNTRIESURL;
+  }
+
+  get GETALLBOTTLESURL(): string {
+    return this._GETALLBOTTLESURL;
   }
 
   get GETALLPOSITIONINCELLARBYCELLARIDURL(): string {

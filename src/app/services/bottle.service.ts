@@ -3,22 +3,22 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { EnvService } from './env.service';
 import { AuthService } from './auth.service';
 import { Observable } from 'rxjs';
-import { Region } from '../models/region';
+import { Bottle } from '../models/bottle';
 
 @Injectable({
   providedIn: 'root'
 })
-export class RegionService {
+export class BottleService {
 
-  public regionsList: Array<Region>;
+  public bottlesList: Array<Bottle>
 
   constructor(
-      private http: HttpClient,
-      private env: EnvService,
-      private auth: AuthService,
+    private http: HttpClient,
+    private env: EnvService,
+    private auth: AuthService,
   ) { }
 
-  getAllRegions(): Observable<Array<Region>> {
+  getAllBottles(): Observable<Array<Bottle>> {
     const bearer = 'Bearer ' + this.auth.token.token;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -26,6 +26,6 @@ export class RegionService {
         Authorization: bearer,
       })
     };
-    return this.http.get<Array<Region>>(this.env.GETALLREGIONSURL, httpOptions);
+    return this.http.get<Array<Bottle>>(this.env.GETALLBOTTLESURL, httpOptions);
   }
 }

@@ -83,15 +83,15 @@ export class AuthService implements OnInit {
 
   /** GET : Get user infos */
 
-  getUserInfo(uuid: string, token: string): Observable<User> {
-      const bearer = 'Bearer ' + token;
+  getUserInfo(): Observable<User> {
+      const bearer = 'Bearer ' + this.token.token;
       const httpOptions = {
           headers: new HttpHeaders({
               accept: 'application/json',
               Authorization: bearer,
           })
       };
-      return this.http.get<User>(this.env.USER_URL + uuid, httpOptions);
+      return this.http.get<User>(this.env.USER_URL + this.token.uuid, httpOptions);
   }
 
   getToken() {

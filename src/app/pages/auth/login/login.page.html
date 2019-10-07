@@ -21,9 +21,9 @@
 
     <p text-right>Mot de passe oublié ?</p>
 
-    <ion-button type="submit" expand="full" color="primary">Connexion</ion-button>
+    <ion-button [disabled]="disabledButton" type="submit" expand="full" color="primary">Connexion</ion-button>
   </form>
 
   <p text-center>Vous n'avez pas de compte ?</p>
-  <ion-button expand="full" color="danger" (click)="registerModal()">Inscription</ion-button>
+  <ion-button [disabled]="disabledButton" expand="full" color="danger" (click)="registerModal()">Inscription</ion-button>
 </ion-content>

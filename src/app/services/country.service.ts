@@ -10,13 +10,15 @@ import {Country} from '../models/country';
 })
 export class CountryService {
 
+  public countryList: Array<Country>;
+
   constructor(
       private http: HttpClient,
       private env: EnvService,
       private auth: AuthService,
   ) { }
 
-  getAllVintages(): Observable<Array<Country>> {
+  getAllCountries(): Observable<Array<Country>> {
     const bearer = 'Bearer ' + this.auth.token.token;
     const httpOptions = {
       headers: new HttpHeaders({
@@ -24,6 +26,6 @@ export class CountryService {
         Authorization: bearer,
       })
     };
-    return this.http.get<Array<Country>>(this.env.GETALLREGIONSURL, httpOptions);
+    return this.http.get<Array<Country>>(this.env.GETALLCOUNTRIESURL, httpOptions);
   }
 }

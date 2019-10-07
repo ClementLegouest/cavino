@@ -7,6 +7,10 @@ import {EnvService} from '../../services/env.service';
 import {NativeStorage} from '@ionic-native/native-storage/ngx';
 import {MenuService} from '../../services/menu.service';
 import { CellarsService } from 'src/app/services/cellars.service';
+import { CountryService } from 'src/app/services/country.service';
+import { RegionService } from 'src/app/services/region.service';
+import { Region } from 'src/app/models/region';
+import { BottleService } from 'src/app/services/bottle.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -26,7 +30,25 @@ export class DashboardPage implements OnInit {
         private menuService: MenuService,
         private storage: NativeStorage,
         private cellar: CellarsService,
+        private country: CountryService,
+        private region: RegionService,
+        private bottle: BottleService
         ) {
+        country.getAllCountries()
+        .subscribe((countries) => {
+            country.countryList = countries;
+            console.log(country.countryList);
+        });
+        region.getAllRegions()
+        .subscribe((regions) => {
+            region.regionsList = regions;
+            console.log(region.regionsList);
+        });
+        bottle.getAllBottles()
+        .subscribe((bottles) => {
+            bottle.bottlesList = bottles;
+            console.log(bottle.bottlesList);
+        });
         this.menu.enable(false);
         this.menuList = menuService.appPages;
         this.getUserCellars();
@@ -41,14 +63,14 @@ export class DashboardPage implements OnInit {
     }
 
     getUserInfo() {
-        this.authService.getUserInfo(this.authService.token.uuid, this.authService.token.token)
+        this.authService.getUserInfo()
             .subscribe((user) => {
                 this.authService.user = user;
             });
     }
 
     getUserCellars() {
-        this.cellar.getAllCellarsOfOneUser(this.authService.token.uuid, this.authService.token.token)
+        this.cellar.getAllCellarsOfOneUser()
             .subscribe((cellars) => {
                 this.cellar.cellarList = cellars;
             });
