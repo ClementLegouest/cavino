@@ -4,9 +4,9 @@ import { RegisterPage } from '../register/register.page';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { AlertService } from 'src/app/services/alert.service';
-import {EnvService} from '../../../services/env.service';
-import {Router} from '@angular/router';
-import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import { EnvService } from '../../../services/env.service';
+import { Router } from '@angular/router';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 @Component({
     selector: 'app-login',
@@ -42,6 +42,13 @@ export class LoginPage implements OnInit {
         });
         return await registerModal.present();
     }
+
+    async register() {
+        const registerModal = await this.modal.create({
+          component: RegisterPage
+        });
+        return await registerModal.present();
+      }
 
     login(form: NgForm) {
         if (form.value.email === '' || form.value.password === '') {

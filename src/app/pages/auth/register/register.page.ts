@@ -12,10 +12,10 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class RegisterPage implements OnInit {
 
-  constructor(private modalController: ModalController,
-              private authService: AuthService,
+  constructor(private modal: ModalController,
+              private auth: AuthService,
               private navCtrl: NavController,
-              private alertService: AlertService
+              private alert: AlertService,
   ) { }
 
   ngOnInit() {
@@ -23,23 +23,26 @@ export class RegisterPage implements OnInit {
 
   // Dismiss Register Modal
   dismissRegister() {
-    this.modalController.dismiss();
+    this.modal.dismiss();
   }
 
   // On Login button tap, dismiss Register modal and open login Modal
   async loginModal() {
     this.dismissRegister();
-    const loginModal = await this.modalController.create({
+    const loginModal = await this.modal.create({
       component: LoginPage,
     });
     return await loginModal.present();
   }
 
   register(form: NgForm) {
-    this.authService.register(form.value.fName, form.value.lName, form.value.email, form.value.password)
-        .subscribe((data) => {
-            console.log(data);
-        }
-    );
+    this.auth.register(form.value.firstname, form.value.lastname, form.value.email, form.value.password)
+        .subscribe((token) => {
+            console.log(token);
+            this.alert.presentToast('Enregistré·e');
+            this.dismissRegister();
+        }), (error: { status: string; statusText: string; }) => {
+          console.log("On est dans l'erreur");
+        };
   }
 }

@@ -5,7 +5,7 @@ import { LoginPage } from '../auth/login/login.page';
 import { AuthService } from 'src/app/services/auth.service';
 import { EnvService } from '../../services/env.service';
 import { Router } from '@angular/router';
-import {NativeStorage} from '@ionic-native/native-storage/ngx';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 import { CellarsService } from 'src/app/services/cellars.service';
 
 @Component({
@@ -16,7 +16,7 @@ import { CellarsService } from 'src/app/services/cellars.service';
 export class LandingPage implements OnInit {
 
   constructor(
-      private modalController: ModalController,
+      private modal: ModalController,
       private menu: MenuController,
       private authService: AuthService,
       private router: Router,
@@ -35,14 +35,14 @@ export class LandingPage implements OnInit {
   }
 
   async register() {
-    const registerModal = await this.modalController.create({
+    const registerModal = await this.modal.create({
       component: RegisterPage
     });
     return await registerModal.present();
   }
 
   async login() {
-    const loginModal = await this.modalController.create({
+    const loginModal = await this.modal.create({
       component: LoginPage,
     });
     return await loginModal.present();
