@@ -43,9 +43,9 @@ export class CellarsService {
         const bearer = 'Bearer ' + this.auth.token.token;
         const httpOptions = {
             headers: new HttpHeaders({
-                'accept': 'application/json',
-                'Authorization': bearer,
-                'Content-Type': 'applicatrion/json'
+                "accept": "application/json",
+                "Authorization": bearer,
+                "Content-Type": "applicatrion/json"
             })
         };
         const postData = {
@@ -71,7 +71,6 @@ export class CellarsService {
     }
 
     getAllPositionsInCellarByCellarId(id: number) {
-        console.log("Le id de le cellier ", id);
         const bearer = 'Bearer ' + this.auth.token.token;
         const httpOptions = {
             headers: new HttpHeaders({

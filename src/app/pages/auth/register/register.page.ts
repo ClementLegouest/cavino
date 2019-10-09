@@ -38,11 +38,10 @@ export class RegisterPage implements OnInit {
   register(form: NgForm) {
     this.auth.register(form.value.firstname, form.value.lastname, form.value.email, form.value.password)
         .subscribe((token) => {
-            console.log(token);
             this.alert.presentToast('Enregistré·e');
             this.dismissRegister();
         }), (error: { status: string; statusText: string; }) => {
-          console.log("On est dans l'erreur");
+          this.alert.presentToast("Une erreur est survenue lors de l'inscription");
         };
   }
 }

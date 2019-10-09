@@ -5,7 +5,7 @@
         <ion-item>
           <img src="/assets/icon/favicon.png" class="logo">
         </ion-item>
-        <ion-item>CAVINO</ion-item>
+        <ion-item [routerLink]="dashboard">CAVINO</ion-item>
         <ion-item *ngFor="let menu of menuList">
           <ion-label [routerLink]="menu.url">{{ menu.title }}</ion-label>
         </ion-item>
@@ -20,6 +20,19 @@
 
 <ion-content padding>
   <div *ngIf="user != undefined">
-    Welcome {{ user["first_name"]  }} {{ user["last_name"]  }}
+    Bienvenue {{ user.firstname }} {{ user.lastname }}
   </div>
+  <h2>Vous trouverez ci dessous les bouteilles actuellement disponibles dans le service.</h2>
+  <ion-list>
+      <ion-card *ngFor="let bottle of bottlesList">
+        <ion-card-header>
+          <ion-icon [name]="wine" slot="start"></ion-icon>
+          {{bottle.name}}
+        </ion-card-header>
+        <ion-card-content>
+          Type : {{ bottle.wineType }}<br />
+          Région : {{ bottle.region }}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
 </ion-content>

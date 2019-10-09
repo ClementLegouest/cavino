@@ -63,9 +63,7 @@ export class LoginPage implements OnInit {
                     this.dismissLogin();
                     this.router.navigateByUrl('/dashboard');
                 }), (error: { status: string; statusText: string; }) => {
-                    console.log('On est dans l\'erreur');
-                    this.alert.presentToast(error.status + ' ' + error.statusText);
-                    console.log(error.status + ' ' + error.statusText);
+                    this.alert.presentToast("Identifiants inexistants ou erronés");
                 };
             this.disabledButton = false;
         }

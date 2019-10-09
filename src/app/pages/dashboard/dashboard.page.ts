@@ -14,6 +14,7 @@ import { BottleService } from 'src/app/services/bottle.service';
 import { WineService } from 'src/app/services/wine.service';
 import { DomainService } from 'src/app/services/domain.service';
 import { VintageService } from 'src/app/services/vintage.service';
+import { Bottle } from 'src/app/models/bottle';
 
 @Component({
     selector: 'app-dashboard',
@@ -25,6 +26,7 @@ export class DashboardPage implements OnInit {
     private token: Token;
     private user: User;
     private menuList;
+    private bottlesList: Array<Bottle>;
 
     constructor(
         private menu: MenuController,
@@ -63,9 +65,11 @@ export class DashboardPage implements OnInit {
         bottle.getAllBottles()
         .subscribe((bottles) => {
             bottle.bottlesList = bottles;
+            this.bottlesList = bottles;
         });
         this.menu.enable(false);
         this.menuList = menuService.appPages;
+        this.user = authService.user;
         this.getUserCellars();
     }
 

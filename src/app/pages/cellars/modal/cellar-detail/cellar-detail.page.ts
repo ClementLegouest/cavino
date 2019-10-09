@@ -7,6 +7,7 @@ import { AlertService } from 'src/app/services/alert.service';
 import { Cellar } from 'src/app/models/cellar';
 import { Bottle } from 'src/app/models/bottle';
 import { BottleService } from 'src/app/services/bottle.service';
+import { debug } from 'util';
 
 @Component({
   selector: 'app-cellar-detail',
@@ -30,7 +31,6 @@ export class CellarDetailPage implements OnInit {
     private alert: AlertService,
     private bottle: BottleService,
   ) {
-    console.log(this.name, this.width, this.height, this.id, this.userUUID);
     this.getPositions();
   }
 
@@ -41,17 +41,13 @@ export class CellarDetailPage implements OnInit {
     this.cellars.getAllPositionsInCellarByCellarId(Number(this.cellars.currentCellar.id))
     .subscribe((positionsList) => {
       this.positionsList = positionsList;
-      console.log(positionsList);
       positionsList.forEach(position => {
         this.bottle.getOneBottleById(position.bottleId)
         .subscribe((bottle) => {
           this.bottlesInCellar.push(bottle);
         });
       });
-    }),(error: { status: string; statusText: string; }) => {
-      console.log(error.status + ' ' + error.statusText);
-      this.alert.presentToast(error.status + ' ' + error.statusText);
-    };
+    });
     ;
   }
 

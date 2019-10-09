@@ -42,7 +42,6 @@ export class CellarsPage implements OnInit {
     }
 
     async detailCellar(cellar: Cellar) {
-        console.log(cellar);
         this.cellar.currentCellar = cellar;
         const detailModal = await this.modal.create({
             component: CellarDetailPage,

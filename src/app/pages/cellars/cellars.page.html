@@ -5,7 +5,7 @@
                 <ion-item>
                     <img src="/assets/icon/favicon.png" class="logo">
                 </ion-item>
-                <ion-item>CAVINO</ion-item>
+                <ion-item [routerLink]="dashboard">CAVINO</ion-item>
                 <ion-item *ngFor="let menu of menuList">
                     <ion-label [routerLink]="menu.url">{{ menu.title }}</ion-label>
                 </ion-item>

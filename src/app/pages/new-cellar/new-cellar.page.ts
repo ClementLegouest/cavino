@@ -32,7 +32,7 @@ export class NewCellarPage implements OnInit {
     } else {
       this.cellarService.createCellarForUuid(cellarForm.value.name, Number(cellarForm.value.width), Number(cellarForm.value.height))
           .subscribe((cellar) => {
-            console.log(cellar);
+            this.alert.presentToast("Cellier " + cellar.name + " créé.");
           },
           (error) => {
             this.alert.presentToast("Une erreur s'est produitre, Le cellier n'a pas été créé.");

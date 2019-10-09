@@ -16,7 +16,10 @@
       <p>Prix moyen : {{ bottle.averagePrice }}</p>
       <p *ngIf="bottle.isOrganic">Bio : Oui</p>
       <p *ngIf="!bottle.isOrganic">Bio : Non</p>
-      <p>Type de vin : {{ bottle.wineTypeList }}</p>
+      <p>Type de vin :</p>
+        <ul *ngFor="let wineType of bottle.wineTypeList">
+          <li>{{ wineType.name }}</li>
+        </ul>
       <p>Région : {{ bottle.regionList }}</p>
       <p>Pays : {{ bottle.countryList }}</p>
       <p>Domaine : {{ bottle.domain }}</p>

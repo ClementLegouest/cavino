@@ -57,7 +57,6 @@ export class AuthService implements OnInit {
     }
 
     register(firstname: string, lastname: string, email: string, password: string): Observable<Token> {
-        console.log("authService.register : " + firstname + " " + lastname + " " + email + " " + password)
         const httpOptions = {"headers": new HttpHeaders({accept: 'application/json'})};
         return this.http.post<Token>(this.env.SIGNUP_URL, {
             "firstname": firstname,
