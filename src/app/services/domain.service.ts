@@ -10,6 +10,8 @@ import {Domain} from '../models/domain';
 })
 export class DomainService {
 
+  public domainsList: Array<Domain>;
+
   constructor(
       private http: HttpClient,
       private env: EnvService,

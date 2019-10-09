@@ -21,12 +21,16 @@ export class EnvService {
   private _ADDCELLARURL = this.API_URL + this.ADDCELLARURI;
   private DELETECELLARBYIDANDUUID_URI = '/cellar/{id}/{userUUID}';
   private _DELETECELLARBYIDANDUUID_URL = this.API_URL + this.DELETECELLARBYIDANDUUID_URI;
-  private GETALLWINETYPESURI = 'wineType';
+  private GETALLWINETYPESURI = 'wineType?offset=0&limit=20';
   private _GETALLWINETYPESURL = this.API_URL + this.GETALLWINETYPESURI;
   private GETALLREGIONSURI = 'region?offset=0&limit=20';
   private _GETALLREGIONSURL = this.API_URL + this.GETALLREGIONSURI;
   private GETALLCOUNTRIESURI = 'country?offset=0&limit=20';
   private _GETALLCOUNTRIESURL = this.API_URL + this.GETALLCOUNTRIESURI;
+  private GETFAVOURITEREGIONSURI = 'user/favouriteRegions/';
+  private _GETFAVOURITEREGIONSURL = this.API_URL + this.GETFAVOURITEREGIONSURI;
+  private GETFAVOURITEWINESURI = 'user/favouriteWines/';
+  private _GETFAVOURITEWINESURL = this.API_URL + this.GETFAVOURITEWINESURI;
   private GETALLBOTTLESURI = 'bottle?offset=0&limit=20';
   private _GETALLBOTTLESURL = this.API_URL + this.GETALLBOTTLESURI;
   private GETALLPOSITIONINCELLARBYCELLARIDURI = 'positionInCellar/byCellarId/';
@@ -83,6 +87,14 @@ export class EnvService {
 
   get GETALLCOUNTRIESURL(): string {
     return this._GETALLCOUNTRIESURL;
+  }
+
+  get GETFAVOURITEREGIONSURL(): string {
+    return this._GETFAVOURITEREGIONSURL;
+  }
+
+  get GETFAVOURITEWINESURL(): string {
+    return this._GETFAVOURITEWINESURL;
   }
 
   get GETALLBOTTLESURL(): string {

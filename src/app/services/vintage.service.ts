@@ -10,6 +10,8 @@ import {Vintage} from '../models/vintage';
 })
 export class VintageService {
 
+  public vintagesList: Array<Vintage>;
+
   constructor(
       private http: HttpClient,
       private env: EnvService,

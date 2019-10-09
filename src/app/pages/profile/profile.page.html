@@ -35,6 +35,20 @@
         <ion-label>Adresse : {{ user.address }}</ion-label>
       </ion-item>
     </ion-list>
+    
     <h2 class="section_title">Préférences</h2>
+    <h3 class="section_title">Région·s</h3>
+    <ion-list>
+      <ion-item *ngFor="let favRegion of favRegionsList">
+        <ion-label>{{ favRegion.name }}</ion-label>
+      </ion-item>
+    </ion-list>
+
+    <h3 class="section_title">Vin·s</h3>
+    <ion-list>
+      <ion-item *ngFor="let favWine of favWinesList">
+        <ion-label>{{ favWine.name }}</ion-label>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

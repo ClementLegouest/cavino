@@ -11,6 +11,9 @@ import { CountryService } from 'src/app/services/country.service';
 import { RegionService } from 'src/app/services/region.service';
 import { Region } from 'src/app/models/region';
 import { BottleService } from 'src/app/services/bottle.service';
+import { WineService } from 'src/app/services/wine.service';
+import { DomainService } from 'src/app/services/domain.service';
+import { VintageService } from 'src/app/services/vintage.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -32,22 +35,34 @@ export class DashboardPage implements OnInit {
         private cellar: CellarsService,
         private country: CountryService,
         private region: RegionService,
+        private wine: WineService,
+        private domain: DomainService,
+        private vintage: VintageService,
         private bottle: BottleService
         ) {
-        country.getAllCountries()
-        .subscribe((countries) => {
-            country.countryList = countries;
-            console.log(country.countryList);
-        });
         region.getAllRegions()
         .subscribe((regions) => {
             region.regionsList = regions;
-            console.log(region.regionsList);
+        });
+        wine.getAllWineTypes()
+        .subscribe((wines) => {
+            wine.winetypesList = wines;
+        });
+        domain.getAllDomains()
+        .subscribe((domains) => {
+            domain.domainsList = domains;
+        });
+        vintage.getAllVintages()
+        .subscribe((vintages) => {
+            vintage.vintagesList = vintages;
+        });
+        country.getAllCountries()
+        .subscribe((countries) => {
+            country.countryList = countries;
         });
         bottle.getAllBottles()
         .subscribe((bottles) => {
             bottle.bottlesList = bottles;
-            console.log(bottle.bottlesList);
         });
         this.menu.enable(false);
         this.menuList = menuService.appPages;
