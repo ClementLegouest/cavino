@@ -28,4 +28,15 @@ export class BottleService {
     };
     return this.http.get<Array<Bottle>>(this.env.GETALLBOTTLESURL, httpOptions);
   }
+
+  getOneBottleById(id: number): Observable<Bottle> {
+    const bearer = 'Bearer ' + this.auth.token.token;
+    const httpOptions = {
+      headers: new HttpHeaders({
+        accept: 'application/json',
+        Authorization: bearer,
+      })
+    };
+    return this.http.get<Bottle>(this.env.GETONEBOTTLEBYIDURL + id.toString(), httpOptions);
+  }
 }

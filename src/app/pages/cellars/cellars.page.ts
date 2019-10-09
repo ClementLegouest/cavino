@@ -8,6 +8,7 @@ import {ModalController} from '@ionic/angular';
 import {NewCellarPage} from '../new-cellar/new-cellar.page';
 import { CellarDetailPage } from './modal/cellar-detail/cellar-detail.page';
 import { CellarEditPage } from './modal/cellar-edit/cellar-edit.page';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
     selector: 'app-cellars',
@@ -25,6 +26,7 @@ export class CellarsPage implements OnInit {
         private auth: AuthService,
         private cellar: CellarsService,
         private modal: ModalController,
+        private alert: AlertService,
     ) {
         this.menuList = menu.appPages;
         this.cellarList = cellar.cellarList;
@@ -41,13 +43,14 @@ export class CellarsPage implements OnInit {
 
     async detailCellar(cellar: Cellar) {
         console.log(cellar);
+        this.cellar.currentCellar = cellar;
         const detailModal = await this.modal.create({
             component: CellarDetailPage,
             componentProps: {
                 'name': cellar.name,
                 'width': cellar.width.toString(),
                 'height': cellar.height.toString(),
-                'id': cellar.id.toString(),
+                'id': cellar.id,
                 'userUUID': cellar.userUUID
             }
         });
@@ -71,8 +74,10 @@ export class CellarsPage implements OnInit {
     deleteCellar(id: number) {
         this.cellar.deleteCellarByIdAndUuid(id)
             .subscribe((data) => {
-                console.log(data);
-            });
+                this.alert.presentToast("Le cellier a bien été supprimé.")
+            }), (error) => {
+                this.alert.presentToast("Le cellier n'a pas été supprimé.");
+            };
     }
 
     disconnect() {

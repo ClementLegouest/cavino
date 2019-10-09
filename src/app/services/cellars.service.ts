@@ -15,6 +15,7 @@ export class CellarsService {
     private USER_CELLARS_URL: string;
     private token: Token;
     public cellarList: Array<Cellar>;
+    public currentCellar: Cellar;
 
     constructor(
         private env: EnvService,
@@ -66,10 +67,11 @@ export class CellarsService {
                 Authorization: bearer,
             })
         };
-        return this.http.delete(this.env.DELETECELLARBYIDANDUUID_URL + '/' + id + '/' + this.auth.token.uuid, httpOptions);
+        return this.http.delete(this.env.DELETECELLARBYIDANDUUID_URL + id.toString() + '/' + this.auth.token.uuid, httpOptions);
     }
 
     getAllPositionsInCellarByCellarId(id: number) {
+        console.log("Le id de le cellier ", id);
         const bearer = 'Bearer ' + this.auth.token.token;
         const httpOptions = {
             headers: new HttpHeaders({
@@ -77,6 +79,6 @@ export class CellarsService {
                 "Authorization": bearer,
             })
         };
-        return this.http.get<Array<PositionInCellar>>(this.env.GETALLPOSITIONINCELLARBYCELLARIDURL + id + "?offset=0&limit=20", httpOptions)
+        return this.http.get<Array<PositionInCellar>>(this.env.GETALLPOSITIONINCELLARBYCELLARIDURL + id.toString() + "?offset=0&limit=20", httpOptions)
     }
 }

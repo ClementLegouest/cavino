@@ -8,6 +8,19 @@
 </ion-header>
 
 <ion-content padding>
-  <p>Largeur : {{ width }}</p>
-  <p>Hauteur : {{ height }}</p>
+  <ion-list>
+    <ion-item *ngFor="let bottle of bottlesInCellar">
+      <ion-label><p>Nom : {{ bottle.name }}</p>
+      <p>Description : {{ bottle.description }}</p>
+      <p>Prix : {{ bottle.price }}</p>
+      <p>Prix moyen : {{ bottle.averagePrice }}</p>
+      <p *ngIf="bottle.isOrganic">Bio : Oui</p>
+      <p *ngIf="!bottle.isOrganic">Bio : Non</p>
+      <p>Type de vin : {{ bottle.wineTypeList }}</p>
+      <p>Région : {{ bottle.regionList }}</p>
+      <p>Pays : {{ bottle.countryList }}</p>
+      <p>Domaine : {{ bottle.domain }}</p>
+      <p>Milésime : {{ bottle.vintage }}</p></ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>

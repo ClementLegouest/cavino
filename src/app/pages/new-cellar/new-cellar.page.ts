@@ -35,7 +35,7 @@ export class NewCellarPage implements OnInit {
             console.log(cellar);
           },
           (error) => {
-            this.alert.presentToast(error.status + ' : ' + error.statusText + '\nLe cellier n\'a pas été créé.');
+            this.alert.presentToast("Une erreur s'est produitre, Le cellier n'a pas été créé.");
           });
     }
   }
