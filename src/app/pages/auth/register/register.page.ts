@@ -41,7 +41,7 @@ export class RegisterPage implements OnInit {
             this.alert.presentToast('Enregistré·e');
             this.dismissRegister();
         }), (error: { status: string; statusText: string; }) => {
-          this.alert.presentToast("Une erreur est survenue lors de l'inscription");
+          this.alert.presentToast('Une erreur est survenue lors de l\'inscription');
         };
   }
 }

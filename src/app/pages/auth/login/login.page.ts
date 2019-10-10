@@ -62,9 +62,7 @@ export class LoginPage implements OnInit {
                     this.alert.presentToast('Connecté·e');
                     this.dismissLogin();
                     this.router.navigateByUrl('/dashboard');
-                }), (error: { status: string; statusText: string; }) => {
-                    this.alert.presentToast("Identifiants inexistants ou erronés");
-                };
+                });
             this.disabledButton = false;
         }
     }
