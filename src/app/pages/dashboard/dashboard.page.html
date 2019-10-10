@@ -27,11 +27,13 @@
       <ion-card *ngFor="let bottle of bottlesList">
         <ion-card-header>
           <ion-icon [name]="wine" slot="start"></ion-icon>
-          {{bottle.name}}
+          {{ bottle.name }}
         </ion-card-header>
         <ion-card-content>
-          Type : {{ bottle.wineType }}<br />
-          Région : {{ bottle.region }}
+          Type : {{ bottle.wineTypeList }}<br />
+          Région : {{ bottle.regionList }}<br />
+          Domaine : {{ bottle.domain.name }}<br />
+          Milésime : {{ bottle.vintage.name }}
         </ion-card-content>
       </ion-card>
     </ion-list>

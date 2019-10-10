@@ -41,16 +41,16 @@ export class CellarsService {
     /** POST : Add one cellar to one user by uuid */
     createCellarForUuid(name: string, width: number, height: number): Observable<Cellar> {
         const bearer = 'Bearer ' + this.auth.token.token;
-        const httpOptions = {headers: new HttpHeaders({accept: 'application/json',
-                Authorization: bearer,
+        const httpOptions = {headers: new HttpHeaders({'accept': 'application/json',
+                'Authorization': bearer,
                 'Content-Type': 'applicatrion/json'
             })
         };
         return this.http.post<Cellar>(this.env.ADDCELLARURL, {
-            name,
-            width: Number(width),
-            height: Number(height),
-            userUUID: this.auth.user.uuid
+            'name': name,
+            'width': 3,
+            'height': 3,
+            'userUUID': this.auth.user.uuid
         }, httpOptions);
     }
 
